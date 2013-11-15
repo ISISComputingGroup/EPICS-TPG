@@ -1,0 +1,20 @@
+Terminator = '\r\n';
+ReplyTimeout = 2000;
+
+getPressure {
+    out "\$1";
+    in "%*d,%f";
+}
+
+getUnits {
+    out "UNI";
+    in "%{1|2|3};
+}
+
+setUnits {
+    #UNI,1 = mbar
+    #UNI,2 = Torr
+    #UNI,3 = Pa
+    out "UNI,%{1|2|3}";
+    in "%d";
+}
