@@ -4,6 +4,7 @@ record(ai, "$(P)PRESSURE_A1")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PA1) $(PORT)")
     field(PREC, "3")
+	#field(FLNK, "$(P)UNITS")
 }
 
 record(ai, "$(P)PRESSURE_A2") 
@@ -12,6 +13,7 @@ record(ai, "$(P)PRESSURE_A2")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PA2) $(PORT)")
     field(PREC, "3")
+	#field(FLNK, "$(P)UNITS")
 }
 
 record(ai, "$(P)PRESSURE_B1") 
@@ -20,6 +22,7 @@ record(ai, "$(P)PRESSURE_B1")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PB1) $(PORT)")
     field(PREC, "3")
+	#field(FLNK, "$(P)UNITS")
 }
 
 record(ai, "$(P)PRESSURE_B2") 
@@ -28,6 +31,7 @@ record(ai, "$(P)PRESSURE_B2")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PB2) $(PORT)")
     field(PREC, "3")
+	#field(FLNK, "$(P)UNITS")
 }
 
 record(mbbi, "$(P)UNITS") 

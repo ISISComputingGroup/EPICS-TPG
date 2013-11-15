@@ -1,14 +1,26 @@
 Terminator = '\r\n';
 ReplyTimeout = 2000;
 
+#How TPG300 comms work:
+#First send a command (e.g. ask for the pressure) then the device will return ACK.
+#Then send ENQ to get the actual value.
+
+#According to the streamdevice manual, once an "out" is sent access to the
+#device is exclusively locked until the WHOLE protocol is finished.
+#This should mean that we do not need to worry about commands interrupting each other
+
 getPressure {
     out "\$1";
+    in ACK;
+	out ENQ;
     in "%*d,%f";
 }
 
 getUnits {
     out "UNI";
-    in "%{1|2|3};
+	in ACK;
+	out ENQ;
+    in "%{1|2|3}";
 }
 
 setUnits {
@@ -16,5 +28,7 @@ setUnits {
     #UNI,2 = Torr
     #UNI,3 = Pa
     out "UNI,%{1|2|3}";
-    in "%d";
+	in ACK;
+	out ENQ;
+    in "%{1|2|3}";
 }

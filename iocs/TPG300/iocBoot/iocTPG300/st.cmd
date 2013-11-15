@@ -8,7 +8,7 @@
 epicsEnvSet "IOCNAME" "$(P=$(MYPVPREFIX))TPG300"
 epicsEnvSet "IOCSTATS_DB" "$(DEVIOCSTATS)/db/iocAdminSoft.db"
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/../../TPG300Sup"
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM1)"
+epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM12)"
 
 cd ${TOP}
 
@@ -24,7 +24,7 @@ asynSetOption("L0", -1, "stop", "1")
 
 ## Load record instances
 dbLoadRecords("$(TOP)/../../db/devTPG300.db","P=$(IOCNAME):, PORT=L0")
-#dbLoadRecords("$(IOCSTATS_DB)","IOC=$(IOCNAME)")
+dbLoadRecords("$(IOCSTATS_DB)","IOC=$(IOCNAME)")
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit
