@@ -1,10 +1,18 @@
+record(bi, "$(P)SIMULATION"){
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+alias("$(P)SIMULATION", "$(P)SIMULATION:SP:RBV")
+alias("$(P)SIMULATION", "$(P)SIMULATION:SP")
+
 record(ai, "$(P)PRESSURE_A1") 
 {
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PA1) $(PORT)")
     field(PREC, "3")
-	#field(FLNK, "$(P)UNITS")
+    field(SIML, "$(P)SIMULATION")
+    field(SVAL, "1e-6")
 }
 
 record(ai, "$(P)PRESSURE_A2") 
@@ -13,7 +21,8 @@ record(ai, "$(P)PRESSURE_A2")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PA2) $(PORT)")
     field(PREC, "3")
-	#field(FLNK, "$(P)UNITS")
+    field(SIML, "$(P)SIMULATION")
+    field(SVAL, "1e-6")
 }
 
 record(ai, "$(P)PRESSURE_B1") 
@@ -22,7 +31,8 @@ record(ai, "$(P)PRESSURE_B1")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PB1) $(PORT)")
     field(PREC, "3")
-	#field(FLNK, "$(P)UNITS")
+    field(SIML, "$(P)SIMULATION")
+    field(SVAL, "1e-6")
 }
 
 record(ai, "$(P)PRESSURE_B2") 
@@ -31,7 +41,8 @@ record(ai, "$(P)PRESSURE_B2")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PB2) $(PORT)")
     field(PREC, "3")
-	#field(FLNK, "$(P)UNITS")
+    field(SIML, "$(P)SIMULATION")
+    field(SVAL, "1e-6")
 }
 
 record(mbbi, "$(P)UNITS") 
@@ -42,6 +53,8 @@ record(mbbi, "$(P)UNITS")
     field(ZRST, "mbar")
     field(ONST, "Torr")
     field(TWST, "Pa")
+    field(SIML, "$(P)SIMULATION")
+    field(SIOL, "$(P)UNITS:SP")
 }
 
 record(mbbo, "$(P)UNITS:SP") 
@@ -51,6 +64,7 @@ record(mbbo, "$(P)UNITS:SP")
     field(ZRST, "mbar")
     field(ONST, "Torr")
     field(TWST, "Pa")
+    field(SIML, "$(P)SIMULATION")
 }
 
 alias("$(P)UNITS", "$(P)UNITS:SP:RBV")
