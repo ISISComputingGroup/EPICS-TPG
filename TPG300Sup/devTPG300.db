@@ -22,7 +22,7 @@ record(ai, "$(P)PRESSURE_A2")
     field(INP,  "@devTPG300.proto getPressure(PA2) $(PORT)")
     field(PREC, "3")
     field(SIML, "$(P)SIMULATION")
-    field(SVAL, "1e-6")
+    field(SVAL, "1.2e-6")
 }
 
 record(ai, "$(P)PRESSURE_B1") 
@@ -32,7 +32,7 @@ record(ai, "$(P)PRESSURE_B1")
     field(INP,  "@devTPG300.proto getPressure(PB1) $(PORT)")
     field(PREC, "3")
     field(SIML, "$(P)SIMULATION")
-    field(SVAL, "1e-6")
+    field(SVAL, "1.1e-6")
 }
 
 record(ai, "$(P)PRESSURE_B2") 
@@ -42,7 +42,7 @@ record(ai, "$(P)PRESSURE_B2")
     field(INP,  "@devTPG300.proto getPressure(PB2) $(PORT)")
     field(PREC, "3")
     field(SIML, "$(P)SIMULATION")
-    field(SVAL, "1e-6")
+    field(SVAL, "1.3e-6")
 }
 
 record(mbbi, "$(P)UNITS") 
