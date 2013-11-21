@@ -1,9 +1,37 @@
-record(bi, "$(P)SIMULATION"){
-    field(ZNAM, "OFF")
-    field(ONAM, "ON")
+## SIMULATION STUFF ##
+
+record(bo, "$(P)SIM") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
 }
-alias("$(P)SIMULATION", "$(P)SIMULATION:SP:RBV")
-alias("$(P)SIMULATION", "$(P)SIMULATION:SP")
+
+alias("$(P)SIM", "$(P)SIM:SP")
+
+record(mbbi, "$(P)SIM:UNITS") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZRST, "mbar")
+    field(ONST, "Torr")
+    field(TWST, "Pa")
+}
+
+alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP")
+
+alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP:RBV")
+
+record(ai, "$(P)SIM:PRESSURE") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(PREC, "3")
+    field(VAL, "1e-6")
+}
+
+## END SIMULATION STUFF ##
 
 record(ai, "$(P)PRESSURE_A1") 
 {
@@ -11,8 +39,8 @@ record(ai, "$(P)PRESSURE_A1")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PA1) $(PORT)")
     field(PREC, "3")
-    field(SIML, "$(P)SIMULATION")
-    field(SVAL, "1e-6")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRESSURE")
 }
 
 record(ai, "$(P)PRESSURE_A2") 
@@ -21,8 +49,8 @@ record(ai, "$(P)PRESSURE_A2")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PA2) $(PORT)")
     field(PREC, "3")
-    field(SIML, "$(P)SIMULATION")
-    field(SVAL, "1.2e-6")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRESSURE")
 }
 
 record(ai, "$(P)PRESSURE_B1") 
@@ -31,8 +59,8 @@ record(ai, "$(P)PRESSURE_B1")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PB1) $(PORT)")
     field(PREC, "3")
-    field(SIML, "$(P)SIMULATION")
-    field(SVAL, "1.1e-6")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRESSURE")
 }
 
 record(ai, "$(P)PRESSURE_B2") 
@@ -41,8 +69,8 @@ record(ai, "$(P)PRESSURE_B2")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PB2) $(PORT)")
     field(PREC, "3")
-    field(SIML, "$(P)SIMULATION")
-    field(SVAL, "1.3e-6")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:PRESSURE")
 }
 
 record(mbbi, "$(P)UNITS") 
@@ -53,8 +81,8 @@ record(mbbi, "$(P)UNITS")
     field(ZRST, "mbar")
     field(ONST, "Torr")
     field(TWST, "Pa")
-    field(SIML, "$(P)SIMULATION")
-    field(SIOL, "$(P)UNITS:SP")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNITS")
 }
 
 record(mbbo, "$(P)UNITS:SP") 
@@ -64,7 +92,8 @@ record(mbbo, "$(P)UNITS:SP")
     field(ZRST, "mbar")
     field(ONST, "Torr")
     field(TWST, "Pa")
-    field(SIML, "$(P)SIMULATION")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:UNITS:SP")
 }
 
 alias("$(P)UNITS", "$(P)UNITS:SP:RBV")
