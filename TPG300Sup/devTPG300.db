@@ -1,3 +1,13 @@
+record(bo, "$(P)DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "0")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
 ## SIMULATION STUFF ##
 
 record(bo, "$(P)SIM") 
@@ -41,6 +51,7 @@ record(ai, "$(P)PRESSURE_A1")
     field(PREC, "3")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PRESSURE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)PRESSURE_A2") 
@@ -51,6 +62,7 @@ record(ai, "$(P)PRESSURE_A2")
     field(PREC, "3")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PRESSURE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)PRESSURE_B1") 
@@ -61,6 +73,7 @@ record(ai, "$(P)PRESSURE_B1")
     field(PREC, "3")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PRESSURE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(ai, "$(P)PRESSURE_B2") 
@@ -71,6 +84,7 @@ record(ai, "$(P)PRESSURE_B2")
     field(PREC, "3")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:PRESSURE")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbi, "$(P)UNITS") 
@@ -83,6 +97,7 @@ record(mbbi, "$(P)UNITS")
     field(TWST, "Pa")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNITS")
+    field(SDIS, "$(P)DISABLE")
 }
 
 record(mbbo, "$(P)UNITS:SP") 
@@ -94,6 +109,7 @@ record(mbbo, "$(P)UNITS:SP")
     field(TWST, "Pa")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNITS:SP")
+    field(SDIS, "$(P)DISABLE")
 }
 
 alias("$(P)UNITS", "$(P)UNITS:SP:RBV")
