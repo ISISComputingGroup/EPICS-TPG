@@ -33,6 +33,7 @@ TIMESTAMPRECORD=$(SUPPORT)/timestampRecord/1-0
 CAPUTLOG=$(SUPPORT)/caPutLog/3-3-3
 CSM=$(SUPPORT)/csm/4-2
 ICPCONFIG=$(SUPPORT)/icpconfig
+UTILITIES=$(SUPPORT)/utilities
 AUTOSAVE=$(SUPPORT)/autosave/R5_0
 
 # EPICS_BASE usually appears last so other apps can override stuff:

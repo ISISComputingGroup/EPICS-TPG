@@ -35,6 +35,7 @@ $(IOCNAME)_LIBS += caPutLog
 $(IOCNAME)_LIBS += timestampRecord
 $(IOCNAME)_LIBS += icpconfig
 $(IOCNAME)_LIBS += autosave
+$(IOCNAME)_LIBS += utilities
 
 # $(IOCNAME)_registerRecordDeviceDriver.cpp derives from $(IOCNAME).dbd
 $(IOCNAME)_SRCS += $(IOCNAME)_registerRecordDeviceDriver.cpp
