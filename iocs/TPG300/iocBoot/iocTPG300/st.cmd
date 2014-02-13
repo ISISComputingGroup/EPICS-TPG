@@ -27,7 +27,7 @@ asynSetOption("L0", -1, "stop", "1")
 
 < $(IOCSTARTUP)/dbload.cmd
 
-dbLoadRecords("$(TOP)/../../db/devTPG300.db","P=$(IOCNAME):, PORT=L0")
+dbLoadRecords("$(TOP)/../../db/devTPG300.db","P=$(MYPVPREFIX)$(IOCNAME):, PORT=L0")
 
 < $(IOCSTARTUP)/preiocinit.cmd
 

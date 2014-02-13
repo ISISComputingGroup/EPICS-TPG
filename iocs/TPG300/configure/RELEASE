@@ -35,6 +35,7 @@ CSM=$(SUPPORT)/csm/4-2
 ICPCONFIG=$(SUPPORT)/icpconfig
 UTILITIES=$(SUPPORT)/utilities
 AUTOSAVE=$(SUPPORT)/autosave/R5_0
+ONCRPC=$(SUPPORT)/oncrpc/2
 
 # EPICS_BASE usually appears last so other apps can override stuff:
 EPICS_BASE=C:/EPICS/base/3-14-12-2
