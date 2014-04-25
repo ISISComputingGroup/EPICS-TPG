@@ -16,7 +16,7 @@ TPG300_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/../../TPG300Sup"
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\$(COMPORT))"
+epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\$(iocTPG300_COMPORT))"
 drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
 asynSetOption("L0", -1, "baud", "9600")
 asynSetOption("L0", -1, "bits", "8")
