@@ -5,7 +5,7 @@
 
 < envPaths
 
-# Set iocTPG300_COMPORT=COM12 in config file
+# Set e.g. TPG300__COMPORT=COM12 in config file
 
 cd ${TOP}
 
@@ -16,7 +16,7 @@ TPG300_registerRecordDeviceDriver pdbbase
 < $(IOCSTARTUP)/init.cmd
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/../../TPG300Sup"
-epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\$(iocTPG300_COMPORT))"
+epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\$(COMPORT))"
 drvAsynSerialPortConfigure("L0", "$(TTY)", 0, 0, 0, 0)
 asynSetOption("L0", -1, "baud", "9600")
 asynSetOption("L0", -1, "bits", "8")
