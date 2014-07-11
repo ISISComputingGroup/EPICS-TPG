@@ -53,8 +53,8 @@ record(ai, "$(P)PRESSURE_A1")
     field(SIOL, "$(P)SIM:PRESSURE")
     field(SDIS, "$(P)DISABLE")
 	info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
-
 record(ai, "$(P)PRESSURE_A2") 
 {
     field(SCAN, "1 second")
@@ -65,6 +65,7 @@ record(ai, "$(P)PRESSURE_A2")
     field(SIOL, "$(P)SIM:PRESSURE")
     field(SDIS, "$(P)DISABLE")
 	info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)PRESSURE_B1") 
@@ -77,6 +78,7 @@ record(ai, "$(P)PRESSURE_B1")
     field(SIOL, "$(P)SIM:PRESSURE")
     field(SDIS, "$(P)DISABLE")
 	info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(ai, "$(P)PRESSURE_B2") 
@@ -89,6 +91,7 @@ record(ai, "$(P)PRESSURE_B2")
     field(SIOL, "$(P)SIM:PRESSURE")
     field(SDIS, "$(P)DISABLE")
 	info(archive, "VAL")
+    info(INTEREST, "HIGH")
 }
 
 record(mbbi, "$(P)UNITS") 
