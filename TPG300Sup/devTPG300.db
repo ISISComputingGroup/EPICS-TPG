@@ -45,6 +45,7 @@ record(ai, "$(P)SIM:PRESSURE")
 
 record(ai, "$(P)PRESSURE_A1") 
 {
+    field(DESC, "Pressure of A1")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PA1) $(PORT)")
@@ -57,6 +58,7 @@ record(ai, "$(P)PRESSURE_A1")
 }
 record(ai, "$(P)PRESSURE_A2") 
 {
+    field(DESC, "Pressure of A2")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PA2) $(PORT)")
@@ -70,6 +72,7 @@ record(ai, "$(P)PRESSURE_A2")
 
 record(ai, "$(P)PRESSURE_B1") 
 {
+    field(DESC, "Pressure of B1")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PB1) $(PORT)")
@@ -83,6 +86,7 @@ record(ai, "$(P)PRESSURE_B1")
 
 record(ai, "$(P)PRESSURE_B2") 
 {
+    field(DESC, "Pressure of B2")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(PB2) $(PORT)")
