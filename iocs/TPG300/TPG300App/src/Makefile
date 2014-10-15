@@ -1,4 +1,0 @@
-TOP=../..
-
-IOCNAME=TPG300
-include $(TOP)/TPG300App/src/Makefile.base
