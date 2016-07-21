@@ -3,8 +3,11 @@ include $(TOP)/configure/CONFIG
 #=======================================
 
 # Install .dbd and .db files
-# DB_INSTALLS += devTPG300.db
-# FIXME -- HOW TO INSTALL TPG300.proto????
+DATA += devTPG300.proto
+DATA += TPG26x.proto
+
+DB += tpg26x.db
+
 
 #=======================================
 include $(TOP)/configure/RULES
