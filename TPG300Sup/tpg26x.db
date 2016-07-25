@@ -9,34 +9,42 @@ record(bo, "$(P)DISABLE")
 }
 
 # This record reads both pressure and errors
-record(ai,"$(P)1:PRESSURE")
+record(ai,"$(P)1:RAW_PRES")
 {
-	field(DESC, "Pressure reading from gauge 1")
+	field(DESC, "Pressure reading from gauge 1 no error")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(INP,  "@TPG26x.proto pres($(P),1:ERROR,2:ERROR,2:PRESSURE) $(PORT)")
+    field(INP,  "@TPG26x.proto pres($(P),1:ERROR,2:ERROR,2:RAW_PRES) $(PORT)")
 	field(PINI, "YES")
 	field(PREC, "4")
 }
 
-# This record is set from 1:PRESSURE
+# This record is set from 1:RAW_PRES
 record(mbbi,"$(P)1:ERROR")
 {
 	field(DESC, "Error from the Gauge 1")
 	field(SCAN, "Passive")
 	field(ZRST, "No Error")
+	field(ZRSV, "NO_ALARM")
     field(ONST, "Underrange")
+    field(ONSV, "MINOR")
     field(TWST, "Overrange")
+    field(TWSV, "MINOR")
     field(THST, "Sensor error")
+    field(THSV, "MAJOR")
     field(FRST, "Sensor off")
+    field(FRSV, "MAJOR")
     field(FVST, "No Sensor")
+    field(FVSV, "MAJOR")
     field(SXST, "Identification Error")
+    field(SXSV, "MAJOR")
+    field(UNSV, "MAJOR")
 }
 
 # This record is set from 1:PRESSURE
-record(ai,"$(P)2:PRESSURE")
+record(ai,"$(P)2:RAW_PRES")
 {
-	field(DESC, "Pressure reading from gauge 2")
+	field(DESC, "Pressure reading from gauge 2 no error")
     field(SCAN, "Passive")
     field(PREC, "4")
 
@@ -48,16 +56,66 @@ record(mbbi,"$(P)2:ERROR")
 	field(DESC, "Error from the Gauge 2")
 	field(SCAN, "Passive")
 	field(ZRST, "No Error")
+	field(ZRSV, "NO_ALARM")
     field(ONST, "Underrange")
+    field(ONSV, "MINOR")
     field(TWST, "Overrange")
+    field(TWSV, "MINOR")
     field(THST, "Sensor error")
+    field(THSV, "MAJOR")
     field(FRST, "Sensor off")
+    field(FRSV, "MAJOR")
     field(FVST, "No Sensor")
+    field(FVSV, "MAJOR")
     field(SXST, "Identification Error")
+    field(SXSV, "MAJOR")
+    field(SVSV, "MAJOR")
+    field(EISV, "MAJOR")
+    field(NISV, "MAJOR")
+    field(TESV, "MAJOR")
+    field(ELSV, "MAJOR")
+    field(TVSV, "MAJOR")
+    field(TTSV, "MAJOR")
+    field(FTSV, "MAJOR")
+    field(FFSV, "MAJOR")
+}
+
+
+
+record(calc,"$(P)1:PRESSURE") {
+   field(DESC, "Pressure reading from gauge 1")
+   field(INPA, "$(P)1:RAW_PRES CP")
+   field(INPB, "$(P)1:ERROR MS CP")
+   
+   field(CALC, "A")
+   
+}
+
+record(calc,"$(P)2:PRESSURE") {
+   field(DESC, "Pressure reading from gauge 2")
+   field(INPA, "$(P)2:RAW_PRES CP")
+   field(INPB, "$(P)2:ERROR MS CP")
+   
+   field(CALC, "A")
+}
+
+record(stringout,"$(P)1:UNITS_TRANSFER") {
+    field(DESC, "Transfer the units to pressure 1")
+	field(DOL, "$(P)UNITS.VAL CP")
+	field(OMSL, "closed_loop")
+    field(OUT, "$(P)1:PRESSURE.EGU")
+}
+
+record(stringout,"$(P)2:UNITS_TRANSFER") {
+    field(DESC, "Transfer the units to pressure 2")
+	field(DOL, "$(P)UNITS.VAL CP")
+	field(OMSL, "closed_loop")
+    field(OUT, "$(P)2:PRESSURE.EGU")
 }
 
 record(mbbi, "$(P)UNITS") 
 {
+    field(DESC, "Units of pressure")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@TPG26x.proto getUnits $(PORT)")
@@ -72,6 +130,7 @@ record(mbbi, "$(P)UNITS")
 record(mbbo, "$(P)UNITS:SP") 
 {
     field(DTYP, "stream")
+    field(DESC, "Set the units of pressure")
     field(OUT,  "@TPG26x.proto setUnits $(PORT)")
     field(ZRST, "mbar")
     field(ONST, "Torr")
@@ -108,5 +167,3 @@ record(mbbi, "$(P)SIM:UNITS")
 alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP")
 
 alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP:RBV")
-
-#
