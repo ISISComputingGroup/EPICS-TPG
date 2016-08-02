@@ -17,6 +17,11 @@ record(ai,"$(P)1:RAW_PRES")
     field(INP,  "@TPG26x.proto pres($(P),1:ERROR,2:ERROR,2:RAW_PRES) $(PORT)")
 	field(PINI, "YES")
 	field(PREC, "4")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:PRESSURE")
+    field(SDIS, "$(P)DISABLE")
+    field(PINI, "YES")
+    field(VAL, 0)    	
 }
 
 # This record is set from 1:RAW_PRES
@@ -39,18 +44,25 @@ record(mbbi,"$(P)1:ERROR")
     field(SXST, "Identification Error")
     field(SXSV, "MAJOR")
     field(UNSV, "MAJOR")
+    field(PINI, "YES")
+    field(VAL, 0)    
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:1:ERROR")    
 }
 
-# This record is set from 1:PRESSURE
+# This record is set from 1:RAW_PRES
 record(ai,"$(P)2:RAW_PRES")
 {
 	field(DESC, "Pressure reading from gauge 2 no error")
     field(SCAN, "Passive")
     field(PREC, "4")
-
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:PRESSURE")
+    field(PINI, "YES")
+    field(VAL, 0)    
 }
 
-# This record is set from 1:PRESSURE
+# This record is set from 1:RAW_PRES
 record(mbbi,"$(P)2:ERROR")
 {
 	field(DESC, "Error from the Gauge 2")
@@ -78,6 +90,10 @@ record(mbbi,"$(P)2:ERROR")
     field(TTSV, "MAJOR")
     field(FTSV, "MAJOR")
     field(FFSV, "MAJOR")
+    field(PINI, "YES")
+    field(VAL, 0)
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:2:ERROR")    
 }
 
 
@@ -167,3 +183,54 @@ record(mbbi, "$(P)SIM:UNITS")
 alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP")
 
 alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP:RBV")
+
+record(ai,"$(P)SIM:1:PRESSURE")
+{
+	field(DESC, "Simulated pressure reading from gauge 1 no error")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(PINI, "YES")
+    field(VAL, 0)
+}
+
+record(ai,"$(P)SIM:2:PRESSURE")
+{
+	field(DESC, "Simulated pressure reading from gauge 2 no error")
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(FLNK, "$(P)2:RAW_PRES")
+    field(PINI, "YES")
+    field(VAL, 0)
+}
+
+record(mbbi,"$(P)SIM:1:ERROR")
+{
+	field(DESC, "Simulated error from the Gauge 1")
+	field(SCAN, "Passive")
+	field(ZRST, "No Error")
+    field(ONST, "Underrange")
+    field(TWST, "Overrange")
+    field(THST, "Sensor error")
+    field(FRST, "Sensor off")
+    field(FVST, "No Sensor")
+    field(SXST, "Identification Error")
+    field(FLNK, "$(P)1:ERROR")
+    field(PINI, "YES")
+    field(VAL, 0)
+}
+
+record(mbbi,"$(P)SIM:2:ERROR")
+{
+	field(DESC, "Simulated error from the Gauge 2")
+	field(SCAN, "Passive")
+	field(ZRST, "No Error")
+    field(ONST, "Underrange")
+    field(TWST, "Overrange")
+    field(THST, "Sensor error")
+    field(FRST, "Sensor off")
+    field(FVST, "No Sensor")
+    field(SXST, "Identification Error")
+    field(PINI, "YES")
+    field(VAL, 0)
+    field(FLNK, "$(P)2:ERROR")
+}
