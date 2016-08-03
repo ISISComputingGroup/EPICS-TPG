@@ -2,7 +2,7 @@ record(bo, "$(P)DISABLE")
 {
     field(DESC, "Disable comms")
     field(PINI, "YES")
-    field(VAL, "0")
+    field(VAL, "$(DISABLE=0)")
     field(OMSL, "supervisory")
     field(ZNAM, "COMMS ENABLED")
     field(ONAM, "COMMS DISABLED")
@@ -21,7 +21,9 @@ record(ai,"$(P)1:RAW_PRES")
     field(SIOL, "$(P)SIM:1:PRESSURE")
     field(SDIS, "$(P)DISABLE")
     field(PINI, "YES")
-    field(VAL, 0)    	
+	field(FLNK, "$(P)ACTIVITY")
+    field(VAL, 0)
+	info(archive, "VAL")
 }
 
 # This record is set from 1:RAW_PRES
@@ -47,7 +49,9 @@ record(mbbi,"$(P)1:ERROR")
     field(PINI, "YES")
     field(VAL, 0)    
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:1:ERROR")    
+    field(SIOL, "$(P)SIM:1:ERROR")
+	info(archive, "VAL")
+	info(INTEREST, "MEDIUM")
 }
 
 # This record is set from 1:RAW_PRES
@@ -59,7 +63,8 @@ record(ai,"$(P)2:RAW_PRES")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:2:PRESSURE")
     field(PINI, "YES")
-    field(VAL, 0)    
+    field(VAL, 0)
+	info(archive, "VAL")
 }
 
 # This record is set from 1:RAW_PRES
@@ -93,10 +98,10 @@ record(mbbi,"$(P)2:ERROR")
     field(PINI, "YES")
     field(VAL, 0)
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:2:ERROR")    
+    field(SIOL, "$(P)SIM:2:ERROR")
+    info(archive, "VAL")
+	info(INTEREST, "MEDIUM")
 }
-
-
 
 record(calc,"$(P)1:PRESSURE") {
    field(DESC, "Pressure reading from gauge 1")
@@ -104,7 +109,8 @@ record(calc,"$(P)1:PRESSURE") {
    field(INPB, "$(P)1:ERROR MS CP")
    
    field(CALC, "A")
-   
+   info(archive, "VAL")
+   info(INTEREST, "HIGH")
 }
 
 record(calc,"$(P)2:PRESSURE") {
@@ -113,6 +119,16 @@ record(calc,"$(P)2:PRESSURE") {
    field(INPB, "$(P)2:ERROR MS CP")
    
    field(CALC, "A")
+   info(archive, "VAL")
+   info(INTEREST, "HIGH")
+}
+
+record(calc,"$(P)ACTIVITY") {
+   field(DESC, "Activity record")
+   field(INPA, "$(P)ACTIVITY")
+   field(CALC, "A!=0?0:1")
+   field(VAL, 0)
+   field(PINI, "YES")
 }
 
 record(stringout,"$(P)1:UNITS_TRANSFER") {
@@ -141,6 +157,8 @@ record(mbbi, "$(P)UNITS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNITS")
     field(SDIS, "$(P)DISABLE")
+	info(archive, "VAL")
+	info(INTEREST, "HIGH")
 }
 
 record(mbbo, "$(P)UNITS:SP") 
@@ -154,6 +172,7 @@ record(mbbo, "$(P)UNITS:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:UNITS:SP")
     field(SDIS, "$(P)DISABLE")
+	info(archive, "VAL")
 }
 
 alias("$(P)UNITS", "$(P)UNITS:SP:RBV")
@@ -167,6 +186,7 @@ record(bo, "$(P)SIM")
     field(DTYP, "Soft Channel")
     field(ZNAM, "NO")
     field(ONAM, "YES")
+	field(VAL, "$(RECSIM=0)")
 }
 
 alias("$(P)SIM", "$(P)SIM:SP")
@@ -186,7 +206,7 @@ alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP:RBV")
 
 record(ai,"$(P)SIM:1:PRESSURE")
 {
-	field(DESC, "Simulated pressure reading from gauge 1 no error")
+	field(DESC, "Sim pressure from gauge 1 no error")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(PINI, "YES")
@@ -195,7 +215,7 @@ record(ai,"$(P)SIM:1:PRESSURE")
 
 record(ai,"$(P)SIM:2:PRESSURE")
 {
-	field(DESC, "Simulated pressure reading from gauge 2 no error")
+	field(DESC, "Sim pressure from gauge 2 no error")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(FLNK, "$(P)2:RAW_PRES")
