@@ -105,7 +105,7 @@ record(mbbi,"$(P)2:ERROR")
 
 record(calc,"$(P)1:PRESSURE") {
    field(DESC, "Pressure reading from gauge 1")
-   field(INPA, "$(P)1:RAW_PRES CP")
+   field(INPA, "$(P)1:RAW_PRES MS CP")
    field(INPB, "$(P)1:ERROR MS CP")
    
    field(CALC, "A")
@@ -115,8 +115,9 @@ record(calc,"$(P)1:PRESSURE") {
 
 record(calc,"$(P)2:PRESSURE") {
    field(DESC, "Pressure reading from gauge 2")
-   field(INPA, "$(P)2:RAW_PRES CP")
+   field(INPA, "$(P)2:RAW_PRES MS CP")
    field(INPB, "$(P)2:ERROR MS CP")
+   field(INPA, "$(P)1:RAW_PRES MS CP")
    
    field(CALC, "A")
    info(archive, "VAL")
