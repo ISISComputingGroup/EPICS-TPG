@@ -116,7 +116,10 @@ record(calc,"$(P)1:PRESSURE") {
 record(calc,"$(P)2:PRESSURE") {
    field(DESC, "Pressure reading from gauge 2")
    field(INPA, "$(P)2:RAW_PRES MS CP")
+   # For the error state reported
    field(INPB, "$(P)2:ERROR MS CP")
+   # For the disconnect error
+   field(INPC, "$(P)1:RAW_PRES MS CP")
    
    field(CALC, "A")
    info(archive, "VAL")
