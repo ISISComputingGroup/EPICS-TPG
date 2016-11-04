@@ -116,7 +116,7 @@ record(calcout,"$(P)1:CALC_PRES") {
 record(ai,"$(P)1:PRESSURE") {
    field(DESC, "Pressure reading from gauge 1")
    field(EGU, "") # set by units transfer
-   field(PREC, 3)
+   field(PREC, "4")
    info(archive, "VAL")
    info(INTEREST, "HIGH")
 }
@@ -137,7 +137,7 @@ record(calcout,"$(P)2:CALC_PRES") {
 record(ai,"$(P)2:PRESSURE") {
    field(DESC, "Pressure reading from gauge 2")
    field(EGU, "") # set by units transfer
-   field(PREC, 3)
+   field(PREC, "4")
    info(archive, "VAL")
    info(INTEREST, "HIGH")
 }
