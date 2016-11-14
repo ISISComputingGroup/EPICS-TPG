@@ -102,25 +102,42 @@ record(mbbi,"$(P)2:ERROR")
 	info(INTEREST, "MEDIUM")
 }
 
-record(calc,"$(P)1:PRESSURE") {
-   field(DESC, "Pressure reading from gauge 1")
+record(calcout,"$(P)1:CALC_PRES") {
+   field(DESC, "Pressure calculation gauge 1")
    field(INPA, "$(P)1:RAW_PRES MS CP")
+   # For the error state reported
    field(INPB, "$(P)1:ERROR MS CP")
    
+   field(OUT, "$(P)1:PRESSURE MS PP")
+   
    field(CALC, "A")
+}
+
+record(ai,"$(P)1:PRESSURE") {
+   field(DESC, "Pressure reading from gauge 1")
+   field(EGU, "") # set by units transfer
+   field(PREC, "4")
    info(archive, "VAL")
    info(INTEREST, "HIGH")
 }
 
-record(calc,"$(P)2:PRESSURE") {
-   field(DESC, "Pressure reading from gauge 2")
+record(calcout,"$(P)2:CALC_PRES") {
+   field(DESC, "Pressure calculation gauge 2")
    field(INPA, "$(P)2:RAW_PRES MS CP")
    # For the error state reported
    field(INPB, "$(P)2:ERROR MS CP")
-   # For the disconnect error
+   # For the disconnect error (data is pushed into 1)
    field(INPC, "$(P)1:RAW_PRES MS CP")
    
+   field(OUT, "$(P)2:PRESSURE MS PP")
+   
    field(CALC, "A")
+}
+
+record(ai,"$(P)2:PRESSURE") {
+   field(DESC, "Pressure reading from gauge 2")
+   field(EGU, "") # set by units transfer
+   field(PREC, "4")
    info(archive, "VAL")
    info(INTEREST, "HIGH")
 }
