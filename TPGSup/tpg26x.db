@@ -140,6 +140,7 @@ record(ai,"$(P)1:PRESSURE") {
    field(DESC, "Pressure reading from gauge 1")
    field(EGU, "") # set by units transfer
    field(PREC, "4")
+   info(alarm, "TPG26x")
    info(archive, "VAL")
    info(INTEREST, "HIGH")
 }
@@ -161,6 +162,7 @@ record(ai,"$(P)2:PRESSURE") {
    field(DESC, "Pressure reading from gauge 2")
    field(EGU, "") # set by units transfer
    field(PREC, "4")
+   info(alarm, "TPG26x")
    info(archive, "VAL")
    info(INTEREST, "HIGH")
 }
