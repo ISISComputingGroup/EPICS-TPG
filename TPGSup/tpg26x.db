@@ -140,9 +140,22 @@ record(ai,"$(P)1:PRESSURE") {
    field(DESC, "Pressure reading from gauge 1")
    field(EGU, "") # set by units transfer
    field(PREC, "4")
-   info(alarm, "TPG26x")
+   $(IFPRESSUR1) info(alarm, "TPG26x")
    info(archive, "VAL")
    info(INTEREST, "HIGH")
+}
+
+## PV hidden on graph when value set to 0, or is displayed
+## when the channel is on and the VAL field is uncommented (sets to 1)
+
+record(bo, "$(P)1:VISIBLE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(PINI, "YES")
+    $(IFPRESSUR1) field(VAL, "1")
 }
 
 record(calcout,"$(P)2:CALC_PRES") {
@@ -162,9 +175,22 @@ record(ai,"$(P)2:PRESSURE") {
    field(DESC, "Pressure reading from gauge 2")
    field(EGU, "") # set by units transfer
    field(PREC, "4")
-   info(alarm, "TPG26x")
+   $(IFPRESSUR2)  info(alarm, "TPG26x")
    info(archive, "VAL")
    info(INTEREST, "HIGH")
+}
+
+## PV hidden on graph when value set to 0, or is displayed
+## when the channel is on and the VAL field is uncommented (sets to 1)
+
+record(bo, "$(P)2:VISIBLE")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(PINI, "YES")
+    $(IFPRESSUR2) field(VAL, "1")
 }
 
 record(calc,"$(P)ACTIVITY") {
