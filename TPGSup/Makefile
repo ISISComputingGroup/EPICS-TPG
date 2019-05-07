@@ -12,6 +12,9 @@ DB += unit_setter.db
 
 DB += tpg26x.db
 
+DB += TPG36x.db
+DATA += TPG36x.proto
+
 
 #=======================================
 include $(TOP)/configure/RULES
