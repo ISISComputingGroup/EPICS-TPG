@@ -1,0 +1,56 @@
+record(bo, "$(P)FUNCTION:$(Q):SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+    field(VAL, "$(RECSIM=0)")
+}
+
+record(bo, "$(P)FUNCTION:$(Q):DISABLE") 
+{
+    field(DESC, "Disable comms")
+    field(PINI, "YES")
+    field(VAL, "$(DISABLE=0)")
+    field(OMSL, "supervisory")
+    field(ZNAM, "COMMS ENABLED")
+    field(ONAM, "COMMS DISABLED")
+}
+
+## These records are separated because we do not want to create them for :SEL
+## SEL stands for selected function (the readback of which is shown in the OPI)
+
+record(stringin, "$(P)FUNCTION:$(Q):RB")
+{
+    field(DTYP, "stream")
+    field(SCAN, "Passive")
+    field(PINI, "YES")
+    field(INP, "@devTPG300.proto getFunctionMacro($(Q)) $(PORT)")
+    field(FLNK, "$(P)FUNCTION:$(Q):RB:FAN")
+    field(SIML, "$(P)FUNCTION:$(Q):SIM")
+    field(SIOL, "$(P)FUNCTION:$(Q):SIM:RB")
+    field(SDIS, "$(P)FUNCTION:$(Q):DISABLE")
+}
+
+record(calc, "$(P)FUNCTION:$(Q):THRESHOLD:BELOW")
+{
+    field(DESC, "Function $(Q) below lower threshold flag")
+    field(SCAN, "1 second")
+    field(INPA, "$(P)FUNCTION:$(Q):ASSIGN:RB")
+    field(INPB, "$(P)FUNCTION:$(Q):LOW:RB")
+    field(INPC, "$(P)FUNCTION:$(Q):LOW:E:RB")
+    field(INPD, "$(P)PRESSURE_A1")
+    field(INPE, "$(P)PRESSURE_A2")
+    field(INPF, "$(P)PRESSURE_B1")
+    field(CALC, "(A=1||A=5)?(D<B*10^C):((A=2||A=6)?(E<B*10^C):(F<B*10^C))")
+    info(INTEREST, "HIGH")
+}
+
+### SIMULATION RECORDS ###
+
+record(stringin,"$(P)FUNCTION:$(Q):SIM:RB")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+}
+

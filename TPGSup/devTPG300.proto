@@ -32,3 +32,31 @@ setUnits {
 	out ENQ;
     in "%{1|2|3}";
 }
+
+getFunction {
+    out "SP%(\$1)s";
+    in ACK;
+    out ENQ;
+    in "%s";
+}
+
+getFunctionMacro {
+    out "SP\$1";
+    in ACK;
+    out ENQ;
+    in "%s";
+}
+
+setFunction {
+    out "SP%(\$1)s,%(\$2)sE%(\$3)s,%(\$4)sE%(\$5)s,%(\$6)s";
+    in ACK;
+    out ENQ;
+    in "%s";
+}
+
+getFunctionsStatus {
+    out "SPS";
+    in ACK;
+    out ENQ;
+    in "%s";
+}
