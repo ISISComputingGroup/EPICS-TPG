@@ -46,16 +46,7 @@ record(mbbi, "$(P)UNITS")
     info(INTEREST, "HIGH")
 }
 
-record(mbbo, "$(P)UNITS:SP:RBV") 
-{
-    field(SCAN, "Passive")
-    field(DTYP, "Soft Channel")
-    field(OUT,  "$(P)UNITS:SP")
-    field(ZRST, "mbar")
-    field(ONST, "Torr")
-    field(TWST, "Pa")
-    field(FLNK, "$(P)UNITS:SP")
-}
+alias("$(P)UNITS", "$(P)UNITS:SP:RBV")
 
 record(mbbo, "$(P)UNITS:SP") 
 {
@@ -83,38 +74,24 @@ record(mbbo, "$(P)FUNCTION")
     field(THST, "4")
     field(FRST, "A")
     field(FVST, "B")
-    field(FLNK, "$(P)FUNCTION:RB:FAN")
-}
-
-record(fanout, "$(P)FUNCTION:RB:FAN")
-{
-    field(DESC, "Fanout for all function readbacks")
-    field(SCAN, "Passive")
-    field(LNK1, "$(P)FUNCTION:SEL:RB")
-    field(LNK2, "$(P)FUNCTION:1:RB")
-    field(LNK3, "$(P)FUNCTION:2:RB")
-    field(LNK4, "$(P)FUNCTION:3:RB")
-    field(LNK5, "$(P)FUNCTION:4:RB")
-    field(LNK6, "$(P)FUNCTION:A:RB")
-    field(LNK7, "$(P)FUNCTION:B:RB")
+    field(FLNK, "$(P)FUNCTION:SEL:RB")
 }
 
 record(stringin, "$(P)FUNCTION:SEL:RB")
 {
     field(DESC, "Selected function readback")
     field(DTYP, "stream")
-    field(SCAN, "Passive")
+    field(SCAN, "1 second")
     field(PINI, "YES")
-    field(INP, "@devTPG300.proto getFunction($(P)FUNCTION.VAL) $(PORT)")
-    field(FLNK, "$(P)FUNCTION:SEL:RB:FAN")
+    field(INP, "@devTPG300.proto getFunctionMacro($(P)FUNCTION.VAL,$(P)FUNCTION:SEL) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FUNCTION:SEL:RB")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(ai, "$(P)FUNCTION:LOW:SP")
+record(ao, "$(P)FUNCTION:LOW:SP")
 {
-    field(DESC, "Setpoint for function's low threshold")
+    field(DESC, "Setpoint for low threshold")
     field(SCAN, "Passive")
     field(PREC, "1")
     field(LOPR, "0")
@@ -133,9 +110,9 @@ record(calc, "$(P)FUNCTION:LOW:SP:CALC")
     field(CALC, "FLOOR(D*10*MIN(MAX(A,B),C))/(D*10)")
 }
 
-record(longin, "$(P)FUNCTION:LOW:E:SP")
+record(longout, "$(P)FUNCTION:LOW:E:SP")
 {
-    field(DESC, "Setpoint for function's low threshold exponent")
+    field(DESC, "Setpoint for low threshold exponent")
     field(SCAN, "Passive")
     field(LOPR, "-99")
     field(HOPR, "99")
@@ -151,9 +128,9 @@ record(calc, "$(P)FUNCTION:LOW:E:SP:CALC")
     field(CALC, "MIN(MAX(A,B),C)")
 }
 
-record(ai, "$(P)FUNCTION:HIGH:SP")
+record(ao, "$(P)FUNCTION:HIGH:SP")
 {
-    field(DESC, "Setpoint for function's high threshold")
+    field(DESC, "Setpoint for high threshold")
     field(SCAN, "Passive")
     field(PREC, "1")
     field(LOPR, "0")
@@ -172,9 +149,9 @@ record(calc, "$(P)FUNCTION:HIGH:SP:CALC")
     field(CALC, "FLOOR(D*10*MIN(MAX(A,B),C))/(D*10)")
 }
 
-record(longin, "$(P)FUNCTION:HIGH:E:SP")
+record(longout, "$(P)FUNCTION:HIGH:E:SP")
 {
-    field(DESC, "Setpoint for function's high threshold exponent")
+    field(DESC, "Setpoint for high threshold exponent")
     field(SCAN, "Passive")
     field(LOPR, "-99")
     field(HOPR, "99")
@@ -192,7 +169,7 @@ record(calc, "$(P)FUNCTION:HIGH:E:SP:CALC")
 
 record(mbbo, "$(P)FUNCTION:ASSIGN:SP")
 {
-    field(DESC, "Setpoint for function's circuit assignment")
+    field(DESC, "Setpoint for circuit assignment")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(ZRST, "No assignment")
@@ -214,11 +191,10 @@ record(longin, "$(P)FUNCTION:ASSIGN")
 
 record(stringout, "$(P)FUNCTION:ASSIGN:SP:OUT") 
 {
-    field(DESC, "Sends new function's settings")
+    field(DESC, "Sends new settings")
     field(SCAN, "Passive")
     field(DTYP, "stream")
-    field(OUT,  "@devTPG300.proto setFunction($(P)FUNCTION,$(P)FUNCTION:LOW:SP:CALC,$(P)FUNCTION:LOW:E:SP:CALC,$(P)FUNCTION:HIGH:SP:CALC,$(P)FUNCTION:HIGH:E:SP:CALC,$(P)FUNCTION:ASSIGN) $(PORT)")
-    field(FLNK, "$(P)FUNCTION:RB:FAN")
+    field(OUT,  "@devTPG300.proto setFunction($(P)FUNCTION,:LOW:SP:CALC,:LOW:E:SP:CALC,:HIGH:SP:CALC,:HIGH:E:SP:CALC,:ASSIGN) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FUNCTION:ASSIGN:SP:OUT")
     field(SDIS, "$(P)DISABLE")
@@ -230,55 +206,49 @@ record(stringin, "$(P)FUNCTION:STATUS:RB")
     field(DTYP, "stream")
     field(SCAN, "1 second")
     field(PINI, "YES")
-    field(INP, "@devTPG300.proto getFunctionsStatus $(PORT)")
-    field(FLNK, "$(P)FUNCTION:STATUS:RB:FAN")
+    field(INP, "@devTPG300.proto getFunctionsStatus($(P)FUNCTION:STATUS) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FUNCTION:STATUS:RB")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(fanout, "$(P)FUNCTION:STATUS:RB:FAN")
-{
-    field(SCAN, "Passive")
-    field(LNK1, "$(P)FUNCTION:STATUS:1:RB")
-    field(LNK2, "$(P)FUNCTION:STATUS:2:RB")
-    field(LNK3, "$(P)FUNCTION:STATUS:3:RB")
-    field(LNK4, "$(P)FUNCTION:STATUS:4:RB")
-}
-
-record(scalcout, "$(P)FUNCTION:STATUS:1:RB")
+record(bi, "$(P)FUNCTION:STATUS:1:RB")
 {
     field(DESC, "Status of function 1")
+    field(PINI, "0")
+    field(ZNAM, "0")
+    field(ONAM, "1")
     field(SCAN, "Passive")
-    field(INAA, "$(P)FUNCTION:STATUS:RB")
-    field(CALC, "AA[0,0]")
     info(INTEREST, "HIGH")
 }
 
-record(scalcout, "$(P)FUNCTION:STATUS:2:RB")
+record(bi, "$(P)FUNCTION:STATUS:2:RB")
 {
     field(DESC, "Status of function 2")
+    field(PINI, "0")
+    field(ZNAM, "0")
+    field(ONAM, "1")
     field(SCAN, "Passive")
-    field(INAA, "$(P)FUNCTION:STATUS:RB")
-    field(CALC, "AA[2,2]")
     info(INTEREST, "HIGH")
 }
 
-record(scalcout, "$(P)FUNCTION:STATUS:3:RB")
+record(bi, "$(P)FUNCTION:STATUS:3:RB")
 {
     field(DESC, "Status of function 3")
+    field(PINI, "0")
+    field(ZNAM, "0")
+    field(ONAM, "1")
     field(SCAN, "Passive")
-    field(INAA, "$(P)FUNCTION:STATUS:RB")
-    field(CALC, "AA[4,4]")
     info(INTEREST, "HIGH")
 }
 
-record(scalcout, "$(P)FUNCTION:STATUS:4:RB")
+record(bi, "$(P)FUNCTION:STATUS:4:RB")
 {
     field(DESC, "Status of function 4")
+    field(PINI, "0")
+    field(ZNAM, "0")
+    field(ONAM, "1")
     field(SCAN, "Passive")
-    field(INAA, "$(P)FUNCTION:STATUS:RB")
-    field(CALC, "AA[6,6]")
     info(INTEREST, "HIGH")
 }
 
@@ -306,6 +276,9 @@ record(mbbi,"$(P)SIM:UNITS")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+    field(ZRST, "mbar")
+    field(ONST, "Torr")
+    field(TWST, "Pa")
 }
 
 alias("$(P)SIM:UNITS","$(P)SIM:UNITS:SP")

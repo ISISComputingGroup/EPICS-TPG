@@ -17,65 +17,31 @@ record(bo, "$(P)FUNCTION:$(Q):DISABLE")
     field(ONAM, "COMMS DISABLED")
 }
 
-record(fanout, "$(P)FUNCTION:$(Q):RB:FAN")
+record(ai, "$(P)FUNCTION:$(Q):LOW:SP:RBV")
 {
+    field(DESC, "Function $(Q) low threshold")
     field(SCAN, "Passive")
-    field(LNK1, "$(P)FUNCTION:$(Q):LOW:RB")
-    field(LNK2, "$(P)FUNCTION:$(Q):LOW:E:RB")
-    field(LNK3, "$(P)FUNCTION:$(Q):HIGH:RB")
-    field(LNK4, "$(P)FUNCTION:$(Q):HIGH:E:RB")
-    field(LNK5, "$(P)FUNCTION:$(Q):ASSIGN:RB")
-}
-
-record(scalcout, "$(P)FUNCTION:$(Q):LOW:RB")
-{
-    field(DESC, "Function $(Q) low threshold readback")
-    field(SCAN, "Passive")
-    field(INAA, "$(P)FUNCTION:$(Q):RB")
-    field(CALC, "AA[0,'E']")
-    field(PREC, "1")
+    field(PREC, "11")
     info(INTEREST, "MEDIUM")
 }
 
-record(scalcout, "$(P)FUNCTION:$(Q):LOW:E:RB")
+record(ai, "$(P)FUNCTION:$(Q):HIGH:SP:RBV")
 {
-    field(DESC, "Function $(Q) low threshold exponent readback")
+    field(DESC, "Function $(Q) high threshold")
     field(SCAN, "Passive")
-    field(INAA, "$(P)FUNCTION:$(Q):RB")
-    field(CALC, "AA['E',',']")
+    field(PREC, "11")
     info(INTEREST, "MEDIUM")
 }
 
-record(scalcout, "$(P)FUNCTION:$(Q):HIGH:RB")
-{
-    field(DESC, "Function $(Q) high threshold readback")
-    field(SCAN, "Passive")
-    field(INAA, "$(P)FUNCTION:$(Q):RB")
-    field(CALC, "((AA[',',-1])[0,','])[0,'E']")
-    field(PREC, "1")
-    info(INTEREST, "MEDIUM")
-}
-
-record(scalcout, "$(P)FUNCTION:$(Q):HIGH:E:RB")
-{
-    field(DESC, "Function $(Q) high threshold exponent readback")
-    field(SCAN, "Passive")
-    field(INAA, "$(P)FUNCTION:$(Q):RB")
-    field(CALC, "((AA[',',-1])[0,','])['E',-1]")
-    info(INTEREST, "MEDIUM")
-}
-
-record(scalcout, "$(P)FUNCTION:$(Q):ASSIGN:RB")
+record(stringin, "$(P)FUNCTION:$(Q):ASSIGN:SP:RBV")
 {
     field(SCAN, "Passive")
-    field(INAA, "$(P)FUNCTION:$(Q):RB")
-    field(CALC, "AA[-1, -1]")
     field(FLNK, "$(P)FUNCTION:$(Q):ASSIGN:RB:IN")
 }
 
 record(mbbi, "$(P)FUNCTION:$(Q):ASSIGN:RB:IN")
 {
-    field(DESC, "Function $(Q) circuit assignment readback")
+    field(DESC, "Function $(Q) circuit assignment")
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
     field(ZRST, "No assignment")
@@ -87,6 +53,6 @@ record(mbbi, "$(P)FUNCTION:$(Q):ASSIGN:RB:IN")
     field(SXST, "A2 self-monitor")
     field(SVST, "B1 self-monitor")
     field(EIST, "B1 self-monitor")
-    field(INP, "$(P)FUNCTION:$(Q):ASSIGN:RB")
+    field(INP, "$(P)FUNCTION:$(Q):ASSIGN:SP:RBV")
     info(INTEREST, "MEDIUM")
 }

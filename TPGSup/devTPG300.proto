@@ -34,21 +34,21 @@ setUnits {
 }
 
 getFunction {
-    out "SP%(\$1)s";
-    in ACK;
-    out ENQ;
-    in "%s";
-}
-
-getFunctionMacro {
     out "SP\$1";
     in ACK;
     out ENQ;
-    in "%s";
+    in "%(\$2:LOW:SP:RBV)E,%(\$2:HIGH:SP:RBV)E,%(\$2:ASSIGN:SP:RBV)s";
+}
+
+getFunctionMacro {
+    out "SP%(\$1)s";
+    in ACK;
+    out ENQ;
+    in "%(\$2:LOW:SP:RBV)E,%(\$2:HIGH:SP:RBV)E,%(\$2:ASSIGN:SP:RBV)s";
 }
 
 setFunction {
-    out "SP%(\$1)s,%(\$2)sE%(\$3)s,%(\$4)sE%(\$5)s,%(\$6)s";
+    out "SP%(\$1)s,%(\$1\$2).1fE%(\$1\$3)d,%(\$1\$4).1fE%(\$1\$5)d,%(\$1\$6)d";
     in ACK;
     out ENQ;
     in "%s";
@@ -58,5 +58,5 @@ getFunctionsStatus {
     out "SPS";
     in ACK;
     out ENQ;
-    in "%s";
+    in "%(\$1:1:RB){0|1},%(\$1:2:RB){0|1},%(\$1:3:RB){0|1},%(\$1:4:RB){0|1},%*{0|1},%*{0|1}";
 }
