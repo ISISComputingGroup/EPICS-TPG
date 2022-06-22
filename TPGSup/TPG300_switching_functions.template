@@ -33,13 +33,7 @@ record(ai, "$(P)FUNCTION:$(Q):HIGH:SP:RBV")
     info(INTEREST, "MEDIUM")
 }
 
-record(stringin, "$(P)FUNCTION:$(Q):ASSIGN:SP:RBV")
-{
-    field(SCAN, "Passive")
-    field(FLNK, "$(P)FUNCTION:$(Q):ASSIGN:RB:IN")
-}
-
-record(mbbi, "$(P)FUNCTION:$(Q):ASSIGN:RB:IN")
+record(mbbi, "$(P)FUNCTION:$(Q):ASSIGN:SP:RBV")
 {
     field(DESC, "Function $(Q) circuit assignment")
     field(SCAN, "Passive")
@@ -53,6 +47,5 @@ record(mbbi, "$(P)FUNCTION:$(Q):ASSIGN:RB:IN")
     field(SXST, "A2 self-monitor")
     field(SVST, "B1 self-monitor")
     field(EIST, "B1 self-monitor")
-    field(INP, "$(P)FUNCTION:$(Q):ASSIGN:SP:RBV")
     info(INTEREST, "MEDIUM")
 }
