@@ -212,46 +212,6 @@ record(stringin, "$(P)FUNCTION:STATUS:RB")
     field(SDIS, "$(P)DISABLE")
 }
 
-record(bi, "$(P)FUNCTION:STATUS:1:RB")
-{
-    field(DESC, "Status of function 1")
-    field(PINI, "0")
-    field(ZNAM, "0")
-    field(ONAM, "1")
-    field(SCAN, "Passive")
-    info(INTEREST, "HIGH")
-}
-
-record(bi, "$(P)FUNCTION:STATUS:2:RB")
-{
-    field(DESC, "Status of function 2")
-    field(PINI, "0")
-    field(ZNAM, "0")
-    field(ONAM, "1")
-    field(SCAN, "Passive")
-    info(INTEREST, "HIGH")
-}
-
-record(bi, "$(P)FUNCTION:STATUS:3:RB")
-{
-    field(DESC, "Status of function 3")
-    field(PINI, "0")
-    field(ZNAM, "0")
-    field(ONAM, "1")
-    field(SCAN, "Passive")
-    info(INTEREST, "HIGH")
-}
-
-record(bi, "$(P)FUNCTION:STATUS:4:RB")
-{
-    field(DESC, "Status of function 4")
-    field(PINI, "0")
-    field(ZNAM, "0")
-    field(ONAM, "1")
-    field(SCAN, "Passive")
-    info(INTEREST, "HIGH")
-}
-
 ### SIMULATION RECORDS ###
 
 record(stringout,"$(P)SIM:FUNCTION:ASSIGN:SP:OUT")
