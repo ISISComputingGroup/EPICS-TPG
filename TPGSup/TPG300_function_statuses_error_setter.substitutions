@@ -1,0 +1,9 @@
+file $(UTILITIES)/db/error_setter.template {
+
+pattern {P, STREAM_PV, PV_NAME}
+ {"\$(P)", "FUNCTION:STATUS:RB", "FUNCTION:STATUS:1:RB"}
+ {"\$(P)", "FUNCTION:STATUS:RB", "FUNCTION:STATUS:2:RB"}
+ {"\$(P)", "FUNCTION:STATUS:RB", "FUNCTION:STATUS:3:RB"}
+ {"\$(P)", "FUNCTION:STATUS:RB", "FUNCTION:STATUS:4:RB"}
+
+}
