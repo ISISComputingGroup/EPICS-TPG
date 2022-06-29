@@ -93,78 +93,18 @@ record(ao, "$(P)FUNCTION:LOW:SP")
 {
     field(DESC, "Setpoint for low threshold")
     field(SCAN, "Passive")
-    field(PREC, "1")
-    field(LOPR, "0")
-    field(HOPR, "9.9")
-    field(FLNK, "$(P)FUNCTION:LOW:SP:CALC")
-}
-
-record(calc, "$(P)FUNCTION:LOW:SP:CALC")
-{
-    field(SCAN, "Passive")
-    field(PREC, "1")
-    field(INPA, "$(P)FUNCTION:LOW:SP")
-    field(INPB, "$(P)FUNCTION:LOW:SP.LOPR")
-    field(INPC, "$(P)FUNCTION:LOW:SP.HOPR")
-    field(INPD, "$(P)FUNCTION:LOW:SP.PREC")
-    field(CALC, "FLOOR(D*10*MIN(MAX(A,B),C))/(D*10)")
-}
-
-record(longout, "$(P)FUNCTION:LOW:E:SP")
-{
-    field(DESC, "Setpoint for low threshold exponent")
-    field(SCAN, "Passive")
-    field(LOPR, "-99")
-    field(HOPR, "99")
-    field(FLNK, "$(P)FUNCTION:LOW:E:SP:CALC")
-}
-
-record(calc, "$(P)FUNCTION:LOW:E:SP:CALC")
-{
-    field(SCAN, "Passive")
-    field(INPA, "$(P)FUNCTION:LOW:E:SP")
-    field(INPB, "$(P)FUNCTION:LOW:E:SP.LOPR")
-    field(INPC, "$(P)FUNCTION:LOW:E:SP.HOPR")
-    field(CALC, "MIN(MAX(A,B),C)")
+    field(PREC, "11")
+    field(LOPR, "0.000000000001")
+    field(HOPR, "9900")
 }
 
 record(ao, "$(P)FUNCTION:HIGH:SP")
 {
     field(DESC, "Setpoint for high threshold")
     field(SCAN, "Passive")
-    field(PREC, "1")
-    field(LOPR, "0")
-    field(HOPR, "9.9")
-    field(FLNK, "$(P)FUNCTION:HIGH:SP:CALC")
-}
-
-record(calc, "$(P)FUNCTION:HIGH:SP:CALC")
-{
-    field(SCAN, "Passive")
-    field(PREC, "1")
-    field(INPA, "$(P)FUNCTION:HIGH:SP")
-    field(INPB, "$(P)FUNCTION:HIGH:SP.LOPR")
-    field(INPC, "$(P)FUNCTION:HIGH:SP.HOPR")
-    field(INPD, "$(P)FUNCTION:HIGH:SP.PREC")
-    field(CALC, "FLOOR(D*10*MIN(MAX(A,B),C))/(D*10)")
-}
-
-record(longout, "$(P)FUNCTION:HIGH:E:SP")
-{
-    field(DESC, "Setpoint for high threshold exponent")
-    field(SCAN, "Passive")
-    field(LOPR, "-99")
-    field(HOPR, "99")
-    field(FLNK, "$(P)FUNCTION:HIGH:E:SP:CALC")
-}
-
-record(calc, "$(P)FUNCTION:HIGH:E:SP:CALC")
-{
-    field(SCAN, "Passive")
-    field(INPA, "$(P)FUNCTION:HIGH:E:SP")
-    field(INPB, "$(P)FUNCTION:HIGH:E:SP.LOPR")
-    field(INPC, "$(P)FUNCTION:HIGH:E:SP.HOPR")
-    field(CALC, "MIN(MAX(A,B),C)")
+    field(PREC, "11")
+    field(LOPR, "0.000000000001")
+    field(HOPR, "9900")
 }
 
 record(mbbo, "$(P)FUNCTION:ASSIGN:SP")
@@ -194,7 +134,7 @@ record(stringout, "$(P)FUNCTION:ASSIGN:SP:OUT")
     field(DESC, "Sends new settings")
     field(SCAN, "Passive")
     field(DTYP, "stream")
-    field(OUT,  "@devTPG300.proto setFunction($(P)FUNCTION,:LOW:SP:CALC,:LOW:E:SP:CALC,:HIGH:SP:CALC,:HIGH:E:SP:CALC,:ASSIGN) $(PORT)")
+    field(OUT,  "@devTPG300.proto setFunction($(P)FUNCTION,:LOW:SP,:HIGH:SP,:ASSIGN) $(PORT)")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:FUNCTION:ASSIGN:SP:OUT")
     field(SDIS, "$(P)DISABLE")
