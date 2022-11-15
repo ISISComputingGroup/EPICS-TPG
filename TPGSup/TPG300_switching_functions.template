@@ -23,6 +23,7 @@ record(ai, "$(P)FUNCTION:$(Q):LOW:SP:RBV")
     field(SCAN, "Passive")
     field(PREC, "11")
     info(INTEREST, "MEDIUM")
+	field(EGU, "")
 }
 
 record(ai, "$(P)FUNCTION:$(Q):HIGH:SP:RBV")
@@ -31,6 +32,7 @@ record(ai, "$(P)FUNCTION:$(Q):HIGH:SP:RBV")
     field(SCAN, "Passive")
     field(PREC, "11")
     info(INTEREST, "MEDIUM")
+	field(EGU, "")
 }
 
 record(mbbi, "$(P)FUNCTION:$(Q):ASSIGN:SP:RBV")
