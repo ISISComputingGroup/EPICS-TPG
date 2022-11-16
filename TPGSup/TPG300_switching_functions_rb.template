@@ -47,6 +47,7 @@ record(calc, "$(P)FUNCTION:$(Q):THRESHOLD:BELOW")
     field(INPE, "$(P)PRESSURE_B1")
     field(CALC, "(A=1||A=5)?(C<B):((A=2||A=6)?(D<B):(E<B))")
     info(INTEREST, "HIGH")
+	field(ASG, "READONLY")
 }
 
 ### SIMULATION RECORDS ###
