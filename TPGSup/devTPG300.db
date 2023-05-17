@@ -29,6 +29,20 @@ record(ai, "$(P)SIM:PRESSURE")
     field(VAL, "1e-6")
 }
 
+record(mbbi, "$(P)SIM:PRESSURE_STAT") 
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZRST, "Measured data okay")
+    field(ONST, "Underrange")           field(ONSV, "MINOR")
+    field(TWST, "Overrange")            field(TWSV, "MINOR")
+    field(THST, "Point error")          field(THSV, "MAJOR")
+    field(FRST, "Point switched off")   field(FRSV, "MAJOR")
+    field(FVST, "No hardware")          field(FVSV, "INVALID")
+}
+alias("$(P)SIM:PRESSURE_$(CHAN)_STAT","$(P)SIM:PRESSURE_$(CHAN)_STAT:SP")
+alias("$(P)SIM:PRESSURE_$(CHAN)_STAT","$(P)SIM:PRESSURE_$(CHAN)_STAT:RBV")
+
 ## END SIMULATION STUFF ##
 
 record(mbbi, "$(P)UNITS") 

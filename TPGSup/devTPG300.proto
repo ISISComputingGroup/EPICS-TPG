@@ -13,7 +13,7 @@ getPressure {
     out "\$1";
     in ACK;
 	out ENQ;
-    in "%*d,%f";
+    in "%(\$2)i,%f";
 }
 
 getUnits {
