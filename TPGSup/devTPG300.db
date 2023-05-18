@@ -40,8 +40,8 @@ record(mbbi, "$(P)SIM:PRESSURE_STAT")
     field(FRST, "Point switched off")   field(FRSV, "MAJOR")
     field(FVST, "No hardware")          field(FVSV, "INVALID")
 }
-alias("$(P)SIM:PRESSURE_$(CHAN)_STAT","$(P)SIM:PRESSURE_$(CHAN)_STAT:SP")
-alias("$(P)SIM:PRESSURE_$(CHAN)_STAT","$(P)SIM:PRESSURE_$(CHAN)_STAT:RBV")
+alias("$(P)SIM:PRESSURE_STAT","$(P)SIM:PRESSURE_STAT:SP")
+alias("$(P)SIM:PRESSURE_STAT","$(P)SIM:PRESSURE_STAT:RBV")
 
 ## END SIMULATION STUFF ##
 
