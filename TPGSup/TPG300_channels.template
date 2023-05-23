@@ -44,7 +44,7 @@ record(mbbi, "$(P)PRESSURE_$(CHAN)_STAT")
     field(FRST, "Point switched off")   field(FRSV, "MAJOR")
     field(FVST, "No hardware")          field(FVSV, "INVALID")
     field(SIML, "$(P)SIM")
-    field(SIOL, "$(P)SIM:PRESSURE_STATUS")
+    field(SIOL, "$(P)SIM:PRESSURE_STAT")
     field(SDIS, "$(P)DISABLE")
 }
 
