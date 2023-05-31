@@ -20,17 +20,17 @@ getUnits {
     out "UNI";
 	in ACK;
 	out ENQ;
-    in "%{1|2|3}";
+    in "%d";
 }
 
 setUnits {
     #UNI,1 = mbar
     #UNI,2 = Torr
     #UNI,3 = Pa
-    out "UNI,%{1|2|3}";
+    out "UNI,%d";
 	in ACK;
 	out ENQ;
-    in "%{1|2|3}";
+    in "%d";
 }
 
 getFunction {
