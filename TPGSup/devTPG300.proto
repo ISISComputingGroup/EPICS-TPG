@@ -1,7 +1,7 @@
 Terminator = '\r\n';
 ReplyTimeout = 2000;
 
-#How TPG300 comms work:
+#How TPGx00 comms work:
 #First send a command (e.g. ask for the pressure) then the device will return ACK.
 #Then send ENQ to get the actual value.
 
@@ -33,6 +33,7 @@ setUnits {
     in "%d";
 }
 
+# Switching function protocols for a TPG300
 getFunction {
     out "SP\$1";
     in ACK;
@@ -45,6 +46,21 @@ getFunctionMacro {
     in ACK;
     out ENQ;
     in "%(\$2:LOW:SP:RBV:RAW.A)E,%(\$2:HIGH:SP:RBV:RAW.A)E,%(\$2:ASSIGN:SP:RBV:RAW.A)i";
+}
+
+# Switching function protocols for a TPG500
+getFunction500 {
+    out "SP\$1";
+    in ACK;
+    out ENQ;
+    in "%(\$2:LOW:SP:RBV:RAW.A)E,%(\$2:HIGH:SP:RBV:RAW.A)E,%(\$2:ASSIGN:SP:RBV:RAW.A)i,%*s";
+}
+
+getFunctionMacro500 {
+    out "SP%(\$1)s";
+    in ACK;
+    out ENQ;
+    in "%(\$2:LOW:SP:RBV:RAW.A)E,%(\$2:HIGH:SP:RBV:RAW.A)E,%(\$2:ASSIGN:SP:RBV:RAW.A)i,%*s";
 }
 
 #The device requires the values we send to all have exponents, but does not allow leading zeroes on them, so we strip them with some regex post-processing
