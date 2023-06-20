@@ -77,3 +77,10 @@ getFunctionsStatus {
     out ENQ;
     in "%(\$1:1:RB:RAW.A){0|1},%(\$1:2:RB:RAW.A){0|1},%(\$1:3:RB:RAW.A){0|1},%(\$1:4:RB:RAW.A){0|1},%*{0|1},%*{0|1}";
 }
+
+getErrorStatus {
+    out "ERR";
+    in ACK;
+    out ENQ;
+    in "%b";
+}
