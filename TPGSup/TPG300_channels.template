@@ -1,6 +1,6 @@
 record(ai, "$(P)PRESSURE_$(CHAN):RAW")
 {
-    field(DESC, "Pressure of $(CHAN)")
+    field(DESC, "Raw pressure of $(CHAN)")
     field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP,  "@devTPG300.proto getPressure(P$(CHAN),$(P)PRESSURE_$(CHAN)_STAT) $(PORT)") 
@@ -10,6 +10,7 @@ record(ai, "$(P)PRESSURE_$(CHAN):RAW")
 }
 
 record(calc, "$(P)PRESSURE_$(CHAN)") {
+    field(DESC, "Pressure of $(CHAN)")
     field(INPA, "$(P)PRESSURE_$(CHAN):RAW CP MS")
     field(INPB, "$(P)PRESSURE_$(CHAN)_STAT CP MS")
     field(CALC, "A")
@@ -18,6 +19,7 @@ record(calc, "$(P)PRESSURE_$(CHAN)") {
     info(INTEREST, "HIGH")
     field(EGU, "")
     $(IFTEST) info(alarm, "Pressure $(CHAN)")
+    field(ASG, "READONLY")
 }
 ## Visible PVs have initial value set to 0 if the channel is off,
 ## or 1 when the channel is on and the VAL field is uncommented
