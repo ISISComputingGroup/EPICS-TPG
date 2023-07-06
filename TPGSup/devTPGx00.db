@@ -105,8 +105,6 @@ record(mbbi, "$(P)ERROR")
     info(INTEREST, "HIGH")
 }
 
-alias("$(P)ERROR","$(P)ERROR:SP:RBV")
-
 record(mbbo, "$(P)FUNCTION")
 {
     field(DESC, "Switching function selection")
@@ -320,5 +318,3 @@ record(mbbi, "$(P)SIM:ERROR")
     field(FRVL, "1")
     field(FRSV, "MINOR")
 }
-
-alias("$(P)SIM:ERROR","$(P)SIM:ERROR:SP:RBV")
