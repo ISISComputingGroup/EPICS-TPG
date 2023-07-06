@@ -1,9 +1,11 @@
+# Report invalid alarm for TPG500 as these statuses are not being read from the device.
 record(bi, "$(P)FUNCTION:STATUS:$(Q):RB")
 {
     field(DESC, "Status of function $(Q)")
     field(PINI, "0")
     field(ZNAM, "0")
+    $(IFNOT300) field(ZSV, "INVALID")
     field(ONAM, "1")
-    field(SCAN, "Passive")
+    $(IFNOT300) field(OSV, "INVALID")
     info(INTEREST, "HIGH")
 }

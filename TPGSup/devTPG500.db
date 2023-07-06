@@ -1,0 +1,11 @@
+# These PVs are separated from the main DB file as these commands are not used by both models;
+# the 500 does not support these 
+
+record(stringin, "$(P)FUNCTION:STATUS:RB")
+{
+    field(DESC, "Reading all functions' status")
+    field(VAL, "Unavailable")
+    field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:FUNCTION:STATUS:RB")
+    field(SDIS, "$(P)DISABLE")
+}
