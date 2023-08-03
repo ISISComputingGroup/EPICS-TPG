@@ -6,8 +6,6 @@ include $(TOP)/configure/CONFIG
 DATA += devTPG300.proto
 
 DB += devTPGx00.db
-DB += devTPG300.db
-DB += devTPG500.db
 DB += TPG300_channels.db
 DB += unit_setter.db
 DB += TPG300_switching_functions_rb_AB.db
