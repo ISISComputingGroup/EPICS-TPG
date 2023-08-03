@@ -3,7 +3,9 @@ include $(TOP)/configure/CONFIG
 #=======================================
 
 # Install .dbd and .db files
+DATA += devTPGx00.proto
 DATA += devTPG300.proto
+DATA += devTPG500.proto
 
 DB += devTPGx00.db
 DB += TPG300_channels.db
