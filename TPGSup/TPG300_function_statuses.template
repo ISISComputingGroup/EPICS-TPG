@@ -4,6 +4,5 @@ record(bi, "$(P)FUNCTION:STATUS:$(Q):RB")
     field(PINI, "0")
     field(ZNAM, "0")
     field(ONAM, "1")
-    field(SCAN, "Passive")
     info(INTEREST, "HIGH")
 }
