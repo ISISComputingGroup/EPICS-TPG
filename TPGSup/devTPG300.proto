@@ -1,5 +1,6 @@
 InTerminator = CR LF;
 ReplyTimeout = 2000;
+LockTimeout = 10000;
 
 # TPG300 specific communiaction
 
