@@ -5,4 +5,5 @@ record(bi, "$(P)FUNCTION:STATUS:$(Q):RB")
     field(ZNAM, "0")
     field(ONAM, "1")
     info(INTEREST, "HIGH")
+	info(archive, "VAL")
 }
